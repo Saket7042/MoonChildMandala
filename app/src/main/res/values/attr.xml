@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--公用属性-->
+    <!--背景色-->
+    <attr name="zjun_bgColor" format="reference|color" />
+    <!--刻度颜色-->
+    <attr name="zjun_gradationColor" format="reference|color" />
+    <!--刻度字体颜色-->
+    <attr name="zjun_textColor" format="reference|color" />
+    <!--刻度字体大小-->
+    <attr name="zjun_textSize" format="reference|dimension" />
+    <!--中间指针线颜色-->
+    <attr name="zjun_indicatorLineColor" format="reference|color" />
+    <!--中间指针线宽度-->
+    <attr name="zjun_indicatorLineWidth" format="reference|dimension" />
+    <declare-styleable name="CircularLayout">
+        <attr name="item_count" format="integer" />
+        <attr name="item_icons" format="reference" />
+        <attr name="item_titles" format="reference" />
+        <attr name="item_colors" format="reference" />
+        <attr name="center_color" format="reference" />
+        <attr name="center_icon" format="reference" />
+        <attr name="inner_radius" format="dimension" />
+        <attr name="outer_radius" format="dimension" />
+        <attr name="title_color" format="reference" />
+        <attr name="title_size" format="dimension" />
+        <attr name="title_padding" format="dimension" />
+    </declare-styleable>
+
+    <!--普通卷尺控件-->
+    <declare-styleable name="RuleView">
+        <!--背景色-->
+        <attr name="zjun_bgColor" />
+        <!--刻度颜色-->
+        <attr name="zjun_gradationColor" />
+        <!--短刻度线宽度-->
+        <attr name="gv_shortLineWidth" format="reference|dimension" />
+        <!--长刻度线宽度-->
+        <attr name="gv_longLineWidth" format="reference|dimension" />
+        <!--短刻度长度-->
+        <attr name="gv_shortGradationLen" format="reference|dimension" />
+        <!--长刻度长度-->
+        <attr name="gv_longGradationLen" format="reference|dimension" />
+        <!--刻度字体颜色-->
+        <attr name="zjun_textColor" />
+        <!--刻度字体大小-->
+        <attr name="zjun_textSize" />
+        <!--中间指针线颜色-->
+        <attr name="zjun_indicatorLineColor" />
+        <!--中间指针线宽度-->
+        <attr name="zjun_indicatorLineWidth" />
+        <!--中间指针线长度-->
+        <attr name="gv_indicatorLineLen" format="reference|dimension" />
+        <!--最小值-->
+        <attr name="gv_minValue" format="reference|float" />
+        <!--最大值-->
+        <attr name="gv_maxValue" format="reference|float" />
+        <!--当前值-->
+        <attr name="gv_currentValue" format="reference|float" />
+        <!--刻度最小单位-->
+        <attr name="gv_gradationUnit" format="reference|float" />
+        <!--需要绘制数值之间的最小单位个数-->
+        <attr name="gv_numberPerCount" format="reference|integer" />
+        <!--刻度间距离-->
+        <attr name="gv_gradationGap" format="reference|dimension" />
+        <!--刻度与文字的间距-->
+        <attr name="gv_gradationNumberGap" format="reference|dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularLayoutManager">
+        <attr name="clm_numSkipChildren" format="integer" />
+        <attr name="clm_numDisplayChildren" format="integer" />
+        <attr name="clm_startAngle" format="float" />
+        <attr name="clm_sweepAngle" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="PieChart">
+        <attr name="textColor" format="color" />
+        <attr name="chartColor" format="color" />
+        <attr name="centerColor" format="color" />
+        <attr name="aboutChart" format="string" />
+        <attr name="aboutTextColor" format="color" />
+        <attr name="aboutTextSize" format="float" />
+        <attr name="textSize" format="float" />
+        <attr name="equalPartition" format="boolean" />
+    </declare-styleable>
+</resources>
