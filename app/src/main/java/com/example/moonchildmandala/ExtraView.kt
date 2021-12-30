@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.view.LayoutInflater
-import kotlinx.android.synthetic.main.single_item_layout.view.*
+import kotlinx.android.synthetic.main.moon_sign_layout.view.*
 
 class ExtraView : ConstraintLayout {
     private var dayViewModel: DayViewModel? = null
@@ -26,7 +26,7 @@ class ExtraView : ConstraintLayout {
     }
 
     fun init(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.single_item_layout, this, true)
+        LayoutInflater.from(context).inflate(R.layout.moon_sign_layout, this, true)
 
     }
 

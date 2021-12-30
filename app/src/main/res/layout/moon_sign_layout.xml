@@ -7,18 +7,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp">
+        android:padding="12dp">
 
 
         <LinearLayout
             android:id="@+id/llMoon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="6dp"
-            app:layout_constraintBottom_toTopOf="@id/ivStar"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tvText"
@@ -33,14 +33,15 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivStar"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="2dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:visibility="gone"
             android:src="@drawable/star"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llMoon" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
