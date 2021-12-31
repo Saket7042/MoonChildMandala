@@ -45,8 +45,8 @@ class MoonMandalaActivity : AppCompatActivity() {
         val pieChart: PieChart = findViewById<View>(R.id.pie_chart) as PieChart
         val data: MutableList<ChartData> = java.util.ArrayList()
         data.add(ChartData("Fertile", 15F, Color.WHITE, Color.parseColor("#8C8BC0")))
-        data.add(ChartData("Menstruation", 20F, Color.WHITE, Color.parseColor("#ECD9EA"))) //ARGS-> (display text, percentage)
-        data.add(ChartData("Luteal", 35f, Color.WHITE, Color.parseColor("#A4C3DD")))
+        data.add(ChartData("Menstruation", 30F, Color.WHITE, Color.parseColor("#ECD9EA"))) //ARGS-> (display text, percentage)
+        data.add(ChartData("Luteal", 25f, Color.WHITE, Color.parseColor("#A4C3DD")))
         data.add(ChartData("Follicular", 30F, Color.WHITE, Color.parseColor("#CABBDB")))
         pieChart.setAboutTextSize(56f)
         pieChart.setAboutTextColor(Color.WHITE)

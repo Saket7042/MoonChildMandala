@@ -45,6 +45,7 @@ public class PieChart extends View {
     private boolean withPercent;
     private String aboutChart;
     private float aboutTextSize;
+    private float startAngle = 0;
 
     public PieChart(Context context) {
         super(context);
@@ -145,7 +146,7 @@ public class PieChart extends View {
                     textPaint.setTextAlign(Paint.Align.CENTER);
                     textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     if (animateValue <= chartUtils.get(i).getRadius()) {
-                        canvas.drawArc(rectF, 0, animateValue, true, paint);
+                        canvas.drawArc(rectF, startAngle, animateValue, true, paint);
                         if (i == chartUtils.size() - 1 && animateValue == chartUtils.get(i).getRadius()) {
                             double per;
                             if (withPercent)
@@ -157,15 +158,21 @@ public class PieChart extends View {
                             int y = (int) (cy + (r * 0.7 * Math.sin(rad)));
 
                             Path path = new Path();
-                            path.addArc(rectC2, 0, animateValue);
+                            if (i == 0 || i == 1) {
+                                path.addArc(rectC2, animateValue, -animateValue);
+                                canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 20, textPaint);
+                            } else {
+                                path.addArc(rectC2, startAngle, animateValue);
+                                canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+                            }
 
-                            Log.d("animateValue:", String.valueOf(animateValue));
+                            Log.d("startAngle..sweepAngle" + i, String.valueOf(animateValue));
 
-                            canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+//                            canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
 //                            canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
                         }
                     } else {
-                        canvas.drawArc(rectF, 0, chartUtils.get(i).getRadius(), true, paint);
+                        canvas.drawArc(rectF, startAngle, chartUtils.get(i).getRadius(), true, paint);
 
                         double per;
                         if (withPercent)
@@ -178,8 +185,15 @@ public class PieChart extends View {
 
 
                         Path path = new Path();
-                        path.addArc(rectC2, 0, chartUtils.get(i).getRadius());
-                        canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+                        if (i == 0 || i == 1) {
+                            path.addArc(rectC2, chartUtils.get(i).getRadius(), -chartUtils.get(i).getRadius());
+                            canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 20, textPaint);
+                        } else {
+                            path.addArc(rectC2, startAngle, chartUtils.get(i).getRadius());
+                            canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+                        }
+
+                        Log.d("startAngle..sweepAngle" + i, String.valueOf(chartUtils.get(i).getRadius()));
 //                        canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
 
                     }
@@ -201,16 +215,18 @@ public class PieChart extends View {
         }
     }
 
-    private int getHOffset(int i){
+    private int getHOffset(int i) {
         int finalOffset = 0;
-        switch (i){
+        switch (i) {
             case 0:
                 finalOffset = 0;
                 break;
             case 1:
+                finalOffset = -(int) (chartUtils.get(i).getRadius() + chartUtils.get(i - 1).getRadius());
+                break;
             case 2:
             case 3:
-                finalOffset = (int) (chartUtils.get(i).getRadius() + chartUtils.get(i-1).getRadius());
+                finalOffset = (int) (chartUtils.get(i).getRadius() + chartUtils.get(i - 1).getRadius());
                 break;
         }
         return finalOffset;
@@ -238,6 +254,7 @@ public class PieChart extends View {
 
     /**
      * To set the data on chart, if chart data is null than chart will not be displayed
+     *
      * @param chartData Array list of {@link ChartData}
      */
     public void setChartData(@NonNull List<ChartData> chartData) {
@@ -247,7 +264,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param color if background color is not provided in {@link ChartData} than the chart will be drawn with the shade of given color
      */
     public void setChartColor(int color) {
@@ -256,7 +272,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param color if text color is not provided in {@link ChartData} than the text will be drawn with the given color
      */
     public void setTextColor(int color) {
@@ -265,7 +280,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param typeFace to set the typeface on the displayText
      */
     public void setTextTypeFace(Typeface typeFace) {
@@ -275,6 +289,7 @@ public class PieChart extends View {
 
     /**
      * This property will define the partitions width (equal or acc. to percent)
+     *
      * @param withPercent
      */
     public void partitionWithPercent(boolean withPercent) {
@@ -286,7 +301,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param color is the color of center circle
      */
     public void setCenterCircleColor(int color) {
@@ -294,7 +308,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param aboutChart about the chart will display on centre of the chart
      *                   (This should be in single word for better representation)
      */
@@ -303,7 +316,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param aboutTextSize textsize for aboutChart
      */
     public void setAboutTextSize(float aboutTextSize) {
@@ -311,7 +323,6 @@ public class PieChart extends View {
     }
 
     /**
-     *
      * @param aboutTextColor textcolor for aboutChart
      */
     public void setAboutTextColor(int aboutTextColor) {
