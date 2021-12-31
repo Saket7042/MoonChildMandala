@@ -10,7 +10,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.moonchildmandala.pieChart.ChartData
 import com.example.moonchildmandala.pieChart.PieChart
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_moon_mandala.*
+import kotlinx.android.synthetic.main.activity_moon_mandala.main
+import kotlinx.android.synthetic.main.activity_moon_mandala.tvClickedText
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -19,6 +22,9 @@ class MoonMandalaActivity : AppCompatActivity() {
     private val dayModels: ArrayList<DayViewModel> = ArrayList()
     private var screenWidth: Int = 0
     private val numViews = 28
+    private val circleViews: ArrayList<View> = ArrayList()
+    private var lastSelectedPos: Int = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moon_mandala)
@@ -85,6 +91,28 @@ class MoonMandalaActivity : AppCompatActivity() {
                 }else{
                     v.findViewById<LinearLayout>(R.id.llMoon).background = null
                 }
+
+                v.setOnClickListener {
+                    val currentLayout = circleViews[i].findViewById<LinearLayout>(R.id.llMoon)
+                    if (lastSelectedPos != -1) {
+                        val lastLayout = circleViews[lastSelectedPos].findViewById<LinearLayout>(R.id.llMoon)
+                        dayModels[lastSelectedPos].isClicked = false
+                        lastLayout.background = null
+                        if (dayModels[lastSelectedPos].isSelected){
+                            lastLayout.background =
+                                getDrawable(R.drawable.bg_item_selected)
+                        }
+
+                    }
+                    dayModels[i].isClicked = true
+                    currentLayout.background = null
+                    currentLayout.background =
+                        getDrawable(R.drawable.bg_item_selected_dotted)
+
+                    tvClickedText.text = "Selected moon phase: ${dayModels[i].text}"
+                    lastSelectedPos = i
+                }
+                circleViews.add(v)
             }else{
                 v.translationX = ((screenWidth / 3) * cos(angleRad.toDouble()).toFloat()).toFloat()
                 v.translationY = ((screenWidth / 3) * sin(angleRad.toDouble()).toFloat()).toFloat()
@@ -111,6 +139,7 @@ class MoonMandalaActivity : AppCompatActivity() {
                         i.toString(),
                         showImage = true,
                         isSelected = true,
+                        isClicked = false,
                         icon = getDrawable(R.drawable.star)
                     )
                 )
@@ -120,6 +149,7 @@ class MoonMandalaActivity : AppCompatActivity() {
                         i.toString(),
                         showImage = false,
                         isSelected = false,
+                        isClicked = false,
                         icon = getDrawable(R.drawable.star)
                     )
                 )

@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private val dayModels: ArrayList<DayViewModel> = ArrayList()
     private var screenWidth: Int = 0
     private val numViews = 28
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -101,6 +103,7 @@ class MainActivity : AppCompatActivity() {
                         i.toString(),
                         showImage = true,
                         isSelected = true,
+                        isClicked = true,
                         icon = getDrawable(R.drawable.star)
                     )
                 )
@@ -110,6 +113,7 @@ class MainActivity : AppCompatActivity() {
                         i.toString(),
                         showImage = false,
                         isSelected = false,
+                        isClicked = false,
                         icon = getDrawable(R.drawable.star)
                     )
                 )

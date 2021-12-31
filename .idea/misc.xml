@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/bg_item_selected.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/drawable/bg_item_selected_dotted.xml" value="1.1" />
         <entry key="app/src/main/res/drawable/bg_item_unselected.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/circle_background.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/circle_bg_center.xml" value="0.21041666666666667" />
