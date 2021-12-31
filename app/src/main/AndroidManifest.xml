@@ -11,11 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoonChildMandala"
         tools:replace="android:icon">
-<!--        <activity-->
-<!--            android:name=".ExampleActivity"-->
-<!--            android:exported="true" />-->
         <activity
-            android:name=".MainActivity"
+            android:name=".MoonMandalaActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -24,14 +21,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- <activity -->
+        <!-- android:name=".ExampleActivity" -->
+        <!-- android:exported="true" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".ExampleActivity"
             android:exported="true">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
     </application>
 

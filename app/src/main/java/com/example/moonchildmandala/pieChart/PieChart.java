@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -17,6 +20,7 @@ import androidx.annotation.NonNull;
 
 import com.example.moonchildmandala.R;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -121,8 +125,9 @@ public class PieChart extends View {
             int textColor;
             float r = side / 2;
             RectF rectF = new RectF(cx - r, cy - r, cx + r, cy + r);
-            RectF rectC = new RectF(cx - r * 0.5f, cy - r * 0.5f, cx + r * 0.5f, cy + r * 0.5f);
-            RectF rectC1 = new RectF(cx - r * 0.52f, cy - r * 0.52f, cx + r * 0.52f, cy + r * 0.52f);
+            RectF rectC = new RectF(cx - r * 0.66f, cy - r * 0.66f, cx + r * 0.66f, cy + r * 0.66f);
+            RectF rectC1 = new RectF(cx - r * 0.7f, cy - r * 0.7f, cx + r * 0.7f, cy + r * 0.7f);
+            RectF rectC2 = new RectF(cx - r * 0.8f, cy - r * 0.8f, cx + r * 0.8f, cy + r * 0.8f);
             if (animateValue >= 0) {
                 for (int i = chartData.size() - 1; i >= 0; i--) {
                     color = Color.argb(alpha, Color.red(this.color), Color.green(this.color), Color.blue(this.color));
@@ -136,7 +141,9 @@ public class PieChart extends View {
                     else
                         textPaint.setColor(textColor);
 
-
+                    textPaint.setTextSize(40f);
+                    textPaint.setTextAlign(Paint.Align.CENTER);
+                    textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     if (animateValue <= chartUtils.get(i).getRadius()) {
                         canvas.drawArc(rectF, 0, animateValue, true, paint);
                         if (i == chartUtils.size() - 1 && animateValue == chartUtils.get(i).getRadius()) {
@@ -148,10 +155,18 @@ public class PieChart extends View {
                             double rad = per * Math.PI / 180d;
                             int x = (int) (cx + (r * 0.7 * Math.cos(rad)));
                             int y = (int) (cy + (r * 0.7 * Math.sin(rad)));
-                            canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
+
+                            Path path = new Path();
+                            path.addArc(rectC2, 0, animateValue);
+
+                            Log.d("animateValue:", String.valueOf(animateValue));
+
+                            canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+//                            canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
                         }
                     } else {
                         canvas.drawArc(rectF, 0, chartUtils.get(i).getRadius(), true, paint);
+
                         double per;
                         if (withPercent)
                             per = chartUtils.get(i).getRadius() - (chartData.get(i).getPartInPercent() * 1.8f);
@@ -160,11 +175,20 @@ public class PieChart extends View {
                         double rad = per * Math.PI / 180d;
                         int x = (int) (cx + (r * 0.7 * Math.cos(rad)));
                         int y = (int) (cy + (r * 0.7 * Math.sin(rad)));
-                        canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
+
+
+                        Path path = new Path();
+                        path.addArc(rectC2, 0, chartUtils.get(i).getRadius());
+                        canvas.drawTextOnPath(chartData.get(i).getDisplayText(), path, getHOffset(i), 0, textPaint);
+//                        canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
+
                     }
-                    paint.setColor(Color.rgb(Color.red(centerColor), Color.green(centerColor), Color.blue(centerColor)));
+
+                    Log.d("chartutils:" + i, chartUtils.get(i).toString());
+                    Log.d("chartutils:  chartData: " + i, chartData.get(i).toString());
+                    paint.setColor(Color.WHITE);
                     canvas.drawArc(rectC1, 0, animateValue, true, paint);
-                    paint.setColor(Color.rgb(Color.red(centerColor), Color.green(centerColor), Color.blue(centerColor)));
+                    paint.setColor(centerColor);
                     canvas.drawArc(rectC, 0, animateValue, true, paint);
                     if (aboutChart != null) {
                         textPaint.setTextSize(aboutTextSize);
@@ -175,6 +199,21 @@ public class PieChart extends View {
             } else
                 animateChart();
         }
+    }
+
+    private int getHOffset(int i){
+        int finalOffset = 0;
+        switch (i){
+            case 0:
+                finalOffset = 0;
+                break;
+            case 1:
+            case 2:
+            case 3:
+                finalOffset = (int) (chartUtils.get(i).getRadius() + chartUtils.get(i-1).getRadius());
+                break;
+        }
+        return finalOffset;
     }
 
     /**

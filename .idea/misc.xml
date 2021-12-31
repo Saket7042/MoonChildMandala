@@ -5,12 +5,16 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/bg_item_selected.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/drawable/bg_item_unselected.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/circle_background.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/circle_bg_center.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/ripple_circle_bg.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/activity_day_view_mandala.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/activity_example.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_moon_mandala.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/activity_visualization.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/moon_sign_layout.xml" value="0.75" />
         <entry key="app/src/main/res/layout/single_item_layout.xml" value="0.67" />
         <entry key="app/src/main/res/layout/view_circular_item.xml" value="0.22" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21041666666666667" />

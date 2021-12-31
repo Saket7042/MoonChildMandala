@@ -21,6 +21,14 @@ public class ChartUtils implements Comparable<ChartUtils> {
         return offset;
     }
 
+    @Override
+    public String toString() {
+        return ("radius:"+this.getRadius()+
+                " textSize: "+ this.getTextSize() +
+                " offset: "+ this.getOffset() +
+                " percent : " + this.getPercent());
+    }
+
     public float getPercent() {
         return percent;
     }

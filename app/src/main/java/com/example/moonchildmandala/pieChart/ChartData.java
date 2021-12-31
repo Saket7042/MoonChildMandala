@@ -60,6 +60,14 @@ public class ChartData implements Comparable<ChartData> {
     }
 
     @Override
+    public String toString() {
+        return ("displayText:"+this.getDisplayText()+
+                " backgroundColor: "+ this.getBackgroundColor() +
+                " textColor: "+ this.getTextColor() +
+                " partInPercent : " + this.getPartInPercent());
+    }
+
+    @Override
     public int compareTo(ChartData another) {
         if (this.getPartInPercent() > another.getPartInPercent()) return -1;
         else return 1;
